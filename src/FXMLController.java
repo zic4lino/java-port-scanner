@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -230,6 +232,10 @@ public class FXMLController implements Initializable
                     portScanResultDescriptionTableColumn.setCellValueFactory(new PropertyValueFactory<PortScanResult, String>("description"));
                     //Clear table every time scan is started
                     portScanResultsTable.getItems().clear();
+                    
+                    //creating the Log file
+                    FileWriter arq;
+                    arq = new FileWriter("scan.log");
 
                     final ExecutorService exService = Executors.newFixedThreadPool(portScanThreads);
                     final List<Future<PortScanResult>> futures = new ArrayList<>();
@@ -256,11 +262,21 @@ public class FXMLController implements Initializable
                             if (i.get().getIsOpen())
                             {
                                 portScanResultsTable.getItems().add(i.get());
+                                String port_numb = Integer.toString(f.get().getPort());
+                                String desc = f.get().getDescription());
+                                String text = porta +": "+ident;
+                                PrintWriter writefile = new PrintWriter(arq);
+                                writefile.println(text);
+                                
                             }
                         } catch (Exception e)
                         {
                             System.out.println(e);
                         }
+                        arq.close();
+                        } catch (IOException ex) {
+                            System.out.println(ex);
+        }
                     }
                     portScanEnableControls();
                     return null;
