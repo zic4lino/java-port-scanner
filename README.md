@@ -23,3 +23,5 @@ This tab is used for port scanning
 **Ending Port** is the last port that will be scanned. Must be greater than starting port and must be in range: 2 - 65535
 
 You can specify desired timeout and number of threads. Similar to host discovery, more threads mean more network load. Some firewalls may block your connection.
+
+When the portscan finishes, a "scan.log" file will be created.
