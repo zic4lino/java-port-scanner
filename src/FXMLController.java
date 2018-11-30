@@ -262,9 +262,9 @@ public class FXMLController implements Initializable
                             if (i.get().getIsOpen())
                             {
                                 portScanResultsTable.getItems().add(i.get());
-                                String port_numb = Integer.toString(f.get().getPort());
-                                String desc = f.get().getDescription());
-                                String text = porta +": "+ident;
+                                String port_numb = Integer.toString(i.get().getPort());
+                                String desc = i.get().getDescription());
+                                String text = port_numb +": "+desc;
                                 PrintWriter writefile = new PrintWriter(arq);
                                 writefile.println(text);
                                 
